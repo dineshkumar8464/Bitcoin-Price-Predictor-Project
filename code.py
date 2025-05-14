@@ -16,7 +16,7 @@ import time
 # Page Config
 st.set_page_config(page_title="Bitcoin Price Predictor", layout="wide")
 st.markdown("""
-    <h1 style='text-align: center;'>📊 Bitcoin Price Prediction using ML</h1>
+    <h1 style='text-align: center;'> Bitcoin Price Prediction using ML</h1>
 """, unsafe_allow_html=True)
 
 # Load dataset
@@ -76,12 +76,12 @@ xgb_model.fit(X_train, y_train)
 training_time = time.time() - start_time
 
 # Sidebar Inputs
-st.sidebar.title("📥 Input Parameters")
+st.sidebar.title("Input Parameters")
 
-with st.sidebar.expander("📅 Sample Market Data"):
+with st.sidebar.expander("Sample Market Data"):
     st.dataframe(df[["Date", "Open", "High", "Low", "Marketcap"]].tail(5))
 
-with st.sidebar.expander("📌 Input Tips"):
+with st.sidebar.expander("Input Tips"):
     st.markdown("""
     - **Prices** are in USD  
       • Example: `Open = 27000.00`, `High = 27500.00`, `Low = 26500.00`
@@ -90,7 +90,7 @@ with st.sidebar.expander("📌 Input Tips"):
     - Use realistic values from recent trends
     """)
 
-use_slider = st.sidebar.toggle("🎚️ Use sliders instead of manual input", value=False)
+use_slider = st.sidebar.toggle("Use sliders instead of manual input", value=False)
 date = st.sidebar.date_input("Select Date", datetime.date.today())
 
 if use_slider:
@@ -107,7 +107,7 @@ else:
 # Predict Function
 def predict_price():
     if low_price > high_price:
-        st.error("⚠️ Low price cannot be greater than High price.")
+        st.error("Low price cannot be greater than High price.")
         return None, None
 
     year = date.year
@@ -131,19 +131,19 @@ def predict_price():
     return pred_rf, pred_xgb
 
 # Predict
-if st.sidebar.button("🚀 Predict Price"):
+if st.sidebar.button("Predict Price"):
     pred_rf, pred_xgb = predict_price()
 
     if pred_rf is not None:
         rf_price = pred_rf * 50000
         xgb_price = pred_xgb * 50000
 
-        st.success(f"🎯 RF Prediction: ${rf_price:.2f}  |  ⚡ XGBoost: ${xgb_price:.2f}")
-        direction = "⬆️ Increase" if rf_price > open_price else "⬇️ Decrease"
-        st.info(f"📈 Prediction Direction from Open Price: {direction}")
+        st.success(f"RF Prediction: ${rf_price:.2f}  |  ⚡ XGBoost: ${xgb_price:.2f}")
+        direction = "Increase" if rf_price > open_price else "Decrease"
+        st.info(f"Prediction Direction from Open Price: {direction}")
 
         # Explanation Block
-        st.markdown("### 🧠 What does this mean?")
+        st.markdown("###What does this mean?")
         st.markdown(f"""
         - **RF Model Prediction**: Estimated closing price of **${rf_price:,.2f}**
         - **XGBoost Prediction**: Estimated closing price of **${xgb_price:,.2f}**
@@ -154,10 +154,10 @@ if st.sidebar.button("🚀 Predict Price"):
         # Confidence Range (based on RMSE)
         rmse_rf = np.sqrt(mean_squared_error(y_test, best_rf_model.predict(X_test)))
         error_margin = rmse_rf * 50000
-        st.markdown(f"**🔒 Confidence Range (RF): ${rf_price - error_margin:.2f} - ${rf_price + error_margin:.2f}**")
+        st.markdown(f"**Confidence Range (RF): ${rf_price - error_margin:.2f} - ${rf_price + error_margin:.2f}**")
 
         # Summary Table
-        st.markdown("### 📋 Prediction Summary")
+        st.markdown("### Prediction Summary")
         summary_df = pd.DataFrame({
             "Feature": ["Date", "Open", "High", "Low", "Marketcap"],
             "Value": [
@@ -171,7 +171,7 @@ if st.sidebar.button("🚀 Predict Price"):
         st.table(summary_df)
 
         # Feature Importance - Horizontal Bar Chart
-        st.markdown("### 🔍 Feature Importance (Random Forest)")
+        st.markdown("### Feature Importance (Random Forest)")
         fig_imp, ax_imp = plt.subplots()
         importance_series = pd.Series(best_rf_model.feature_importances_, index=X.columns).sort_values()
         importance_series.plot(kind='barh', ax=ax_imp, color='skyblue', edgecolor='black')
@@ -179,7 +179,7 @@ if st.sidebar.button("🚀 Predict Price"):
         st.pyplot(fig_imp)
 
         # Metrics
-        st.markdown("### 🧪 Model Performance Metrics")
+        st.markdown("###  Model Performance Metrics")
         y_pred_rf = best_rf_model.predict(X_test)
         y_pred_xgb = xgb_model.predict(X_test)
         metrics = pd.DataFrame({
@@ -191,7 +191,7 @@ if st.sidebar.button("🚀 Predict Price"):
         st.dataframe(metrics, use_container_width=True)
 
         # Export CSV
-        if st.button("📥 Download Prediction"):
+        if st.button(" Download Prediction"):
             buffer = io.StringIO()
             pd.DataFrame({
                 "Date": [date],
@@ -201,7 +201,7 @@ if st.sidebar.button("🚀 Predict Price"):
             st.download_button("Download as CSV", buffer.getvalue(), file_name="bitcoin_prediction.csv", mime="text/csv")
 
         # Actual vs Predicted Plot
-        st.markdown("### 📊 Actual vs Predicted (Test Set)")
+        st.markdown("### Actual vs Predicted (Test Set)")
         fig2, ax2 = plt.subplots()
         ax2.plot(y_test.values[:50], label="Actual", marker='o')
         ax2.plot(y_pred_rf[:50], label="RF Predicted", linestyle="--")
@@ -211,4 +211,4 @@ if st.sidebar.button("🚀 Predict Price"):
         st.pyplot(fig2)
 
         # Training Time
-        st.caption(f"⏱️ Model Training Time: {training_time:.2f} seconds")
+        st.caption(f" Model Training Time: {training_time:.2f} seconds")
