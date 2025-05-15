@@ -5,18 +5,15 @@ Welcome to the repository for the **Bitcoin Price Predictor Web App**, developed
 
 ---
 
-## Project Overview
+## Overview
 
-**Bitcoin Price Predictor App** is a user-friendly web application that utilizes Machine Learning techniques to estimate Bitcoin prices based on historical and feature-based data.
+**Bitcoin Price Predictor Application** is a user-friendly web application that utilizes Machine Learning techniques to estimate Bitcoin prices based on historical and feature-based data.
 
 It supports:
 
 * Real-time prediction
 * Model performance visualization
 * Scalable deployment
----
-
-## Objective
 
 To design and implement this tool:
 
@@ -25,12 +22,24 @@ To design and implement this tool:
 
 
 ---
-## Acknowledgements and Team
+## Repositry Content
 
-![image](https://github.com/user-attachments/assets/fd2b9a31-d039-4f92-b6ee-c6dba8f5eec7)
+The repositry structure as follows:
+ - `.idea` – Project configuration files created by PyCharm (not required for execution or deployment).
+ - `venv` – Virtual environment containing project-specific dependencies (should be excluded from GitHub using .gitignore).
+ - `.gitignore file` – Specifies files/folders Git should ignore (e.g., venv/, .idea/, __pycache__/).
+ - `code.py file` – Main Python script that implements Bitcoin price prediction using machine learning models.
+ - `README.md file` – Provides an overview, setup guide, and usage instructions for the project.
+
+---
+
+## Result and Team Acknowledgement
+
+![Screenshot (310)](https://github.com/user-attachments/assets/71bf1121-3daa-43e7-9a4b-3788b2c60323)
 
 ![image](https://github.com/user-attachments/assets/9f6864bb-6161-4358-9fce-f4c157ad7cd2)
 
+---
 
 **Team**:
 
@@ -38,6 +47,34 @@ Dinesh, Sirichandana, Devi, Satish
 * Special thanks to faculty mentors and contributors who guided me throughout this project
 
 ---
+## Getting Started
+
+Clone the repository: git clone https://github.com/dineshkumar8464/Bitcoin-Price-Predictor-Project.git/
+
+Navigate to the repository directory: cd Bitcoin-Price-Predictor-Project
+
+Explore the code file/ directory for the coding implementation.
+
+Follow the documentation in the documents/ directory for detailed information.
+
+---
+
+## Contribution Guidelines
+
+Contributions to this project are welcome! If you find issues or have enhancements to propose, please follow these steps:
+
+## Fork the repository.
+
+Create a new branch for your feature/bugfix: git checkout -b feature-name.
+
+Make your changes and commit them: git commit -m "Description of changes".
+
+Push to the branch: git push origin feature-name.
+
+Open a pull request, describing your changes and the problem they solve.
+
+---
+
 
 ## Contact:
 
